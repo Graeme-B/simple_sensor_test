@@ -1,0 +1,33 @@
+I'm getting the following message when trying to display a message to the user
+
+[ERROR:flutter/runtime/dart_vm_initializer.cc(41)] Unhandled Exception: Null check operator used on a null value
+#0      Navigator.of (package:flutter/src/widgets/navigator.dart:2794)
+#1      showDialog (package:flutter/src/material/dialog.dart:1425)
+#2      _MyAppState.showMessage (package:simple_sensor_test/main.dart:397)
+#3      _MyAppState.valueChange (package:simple_sensor_test/main.dart:101)
+#4      _MyAppState.myField.<anonymous closure> (package:simple_sensor_test/main.dart:226)
+#5      _FocusState._handleFocusChanged (package:flutter/src/widgets/focus_scope.dart:643)
+#6      ChangeNotifier.notifyListeners (package:flutter/src/foundation/change_notifier.dart:437)
+#7      FocusNode._notify (package:flutter/src/widgets/focus_manager.dart:1090)
+#8      FocusManager.applyFocusChangesIfNeeded (package:flutter/src/widgets/focus_manager.dart:1871)
+#9      _microtaskLoop (dart:async/schedule_microtask.dart:40)
+#10     _startMicrotaskLoop (dart:async/schedule_microtask.dart:49)
+
+The function which shows the message is
+
+  Future<void> showMessage(String title, String message) async {
+    if (mounted) {
+      showDialog(
+          context: context,
+          builder: (context) =>
+              Center(
+                child: Material(
+                  color: Colors.transparent,
+                  child: Text('Message'),
+                ),
+              )
+      );
+    }
+  }
+
+I assume that the context is inherited from the State object: however when it gets to the Navigator function, it's obviously not set. Any ideas, anyone?

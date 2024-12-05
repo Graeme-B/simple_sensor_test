@@ -1,0 +1,288 @@
+// import 'package:flutter/material.dart';
+//
+// void main() => runApp(const ShowDialogExampleApp());
+//
+// class ShowDialogExampleApp extends StatelessWidget {
+//   const ShowDialogExampleApp({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return const MaterialApp(
+//       home: DialogExample(),
+//     );
+//   }
+// }
+//
+// class DialogExample extends StatelessWidget {
+//   const DialogExample({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: const Text('showDialog Sample')),
+//       body: Center(
+//         child: OutlinedButton(
+//           onPressed: () => _dialogBuilder(context),
+//           child: const Text('Open Dialog'),
+//         ),
+//       ),
+//     );
+//   }
+//
+//   Future<void> _dialogBuilder(BuildContext context) {
+//     return showDialog<void>(
+//       context: context,
+//       builder: (BuildContext context) {
+//         return AlertDialog(
+//           title: const Text('Basic dialog title'),
+//           content: const Text(
+//             'A dialog is a type of modal window that\n'
+//                 'appears in front of app content to\n'
+//                 'provide critical information, or prompt\n'
+//                 'for a decision to be made.',
+//           ),
+//           actions: <Widget>[
+//             TextButton(
+//               style: TextButton.styleFrom(
+//                 textStyle: Theme.of(context).textTheme.labelLarge,
+//               ),
+//               child: const Text('Disable'),
+//               onPressed: () {
+//                 Navigator.of(context).pop();
+//               },
+//             ),
+//             TextButton(
+//               style: TextButton.styleFrom(
+//                 textStyle: Theme.of(context).textTheme.labelLarge,
+//               ),
+//               child: const Text('Enable'),
+//               onPressed: () {
+//                 Navigator.of(context).pop();
+//               },
+//             ),
+//           ],
+//         );
+//       },
+//     );
+//   }
+// }
+
+
+// import 'package:flutter/material.dart';
+//
+// void main() {
+//   runApp(MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: const Text('Testing'),
+//         ),
+//         body: MyAppHome(),
+//       ),
+//     );
+//   }
+// }
+//
+// class MyAppHome extends StatefulWidget {
+//   @override
+//   MyAppHomeState createState() => MyAppHomeState();
+// }
+//
+// class MyAppHomeState extends State<MyAppHome> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return SingleChildScrollView(
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: <Widget>[
+//           Row( // need upright vector, new lat, new lon
+//             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//             children: <Widget>[
+//               ElevatedButton(
+//                 onPressed: () { showMessage("Hello", "world"); },
+//                 child: const Text('Calculate'),
+//               ),
+//             ],
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+//
+//   Future<void> showMessage(String title, String message) async {
+//     // Ensure the widget is still mounted and context is valid
+//     if (mounted) {
+//       showDialog(
+//           context: context,
+//           builder: (context) =>
+//           const Center(
+//             child: Material(
+//               color: Colors.transparent,
+//               child: Text('Message'),
+//             ),
+//           )
+//       );
+//     }
+//   }
+// }
+
+
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Testing'),
+        ),
+        body: MyStatefullApp(),
+      ),
+    );
+  }
+}
+
+class MyStatefullApp extends StatefulWidget {
+  @override
+  MyAppState createState() => MyAppState();
+}
+
+class MyAppState extends State<MyStatefullApp> {
+  final navigatorKey = GlobalKey<NavigatorState>();
+
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+      navigatorKey: navigatorKey,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Testing'),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Row( // need upright vector, new lat, new lon
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  ElevatedButton(
+                    onPressed: () => showMessage("title","message"),
+                    child: const Text('Calculate'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Future<void> showMessage(BuildContext context, String title, String message) async {
+  //   return(
+  //   showDialog<void>(
+  //     context: context,
+  //     builder: (context) {
+  //       Size size = MediaQuery.of(context).size;
+  //       return Container(
+  //         height: size.height,
+  //         width: size.width,
+  //         child: Column(
+  //           children: [
+  //             Text("Heading Text"),
+  //             Text("Secondary TExt"),
+  //             Container(
+  //               height: size.height * 0.6,
+  //               width: size.width * 0.8,
+  //               color: Colors.blue,
+  //             )
+  //           ],
+  //         ),
+  //       );
+  //     },
+  //   )
+  //   );
+  // }
+
+  // Future<void> showMessage(String title, String message) async {
+  //   // Ensure the widget is still mounted and context is valid
+  //   if (mounted) {
+  //     showDialog<bool>(
+  //       context: context,
+  //       builder: (context) {
+  //         Size size = MediaQuery.of(context).size;
+  //         return Container(
+  //           height: size.height,
+  //           width: size.width,
+  //           child: Column(
+  //             children: [
+  //               Text("Heading Text"),
+  //               Text("Secondary TExt"),
+  //               Container(
+  //                 height: size.height * 0.6,
+  //                 width: size.width * 0.8,
+  //                 color: Colors.blue,
+  //               )
+  //             ],
+  //           ),
+  //         );
+  //       },
+  //     );
+  //   }
+  // }
+
+  // Future<void> showMessage(String title, String message) async {
+  //   // Ensure the widget is still mounted and context is valid
+  //   if (mounted) {
+  //     showDialog(
+  //         context: context,
+  //         builder: (context) =>
+  //         const Center(
+  //           child: Material(
+  //             color: Colors.transparent,
+  //             child: Text('Message'),
+  //           ),
+  //         )
+  //     );
+  //   }
+  // }
+
+  Future<void> showMessage(String title, String message) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(message),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
